@@ -1,6 +1,6 @@
 /* Menu */
 body {
-  overflow: hidden;
+  overflow-x: hidden;
   margin: 0;
 }
 
@@ -120,7 +120,7 @@ video {
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  width: 600px;
+  width: 70%;
   border: black 2px solid;
   border-radius: 5px;
   height: 30px;
