@@ -75,7 +75,7 @@ video {
 
 #menu .menu-btn:hover {
   transform: scale(1.05);
-}
+} 
 
 /* game */
 #game {
@@ -356,6 +356,6 @@ video {
   }
   .popimg {
     height: 50%;
-    width: 50%;
+    width: 100%;
   }
 }
