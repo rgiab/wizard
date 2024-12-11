@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shooting Game</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bellefair&family=Luckiest+Guy&display=swap" rel="stylesheet">  
+</head>
+
+<body>
+  <video muted autoplay loop src="assets/bg.mp4"></video>
+
+  <div id="menu">
+    <img src="assets/wizard.png" alt="">
+    <div class="menu-buttons">
+      <button id="startGameButton" class="menu-btn play">Single Game</button>
+      <button class="menu-btn campaign">Campaign</button>
+      <button class="menu-btn multiplayer">Multiplayer</button>
+    </div>
+  </div>
+
+
+  <div id="game">
+    <div id="player">
+    </div>
+    <div id="enemy"></div>
+  </div>
+
+  <div id="gameover" class="popup">
+    <a href="index.html"><button id="restart">X</button></a>
+    <img src="assets/gameover1.jpg" alt="">
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

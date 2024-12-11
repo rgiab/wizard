@@ -1,0 +1,280 @@
+/* Menu */
+body{
+  overflow: hidden;
+  margin: 0;
+
+}
+
+video{
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  object-fit: cover;
+  z-index: -1;
+}
+
+*{
+  font-family: "Luckiest Guy", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* menu */
+#menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  padding: 20px;
+}
+
+#menu img{
+  width: 400px;
+  margin-top: -40px;
+}
+
+#menu .menu-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#menu .menu-btn {
+  width: 300px;
+  padding: 15px ;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #fff;
+  background: #000000bb;
+
+}
+
+
+#menu .menu-btn:hover {
+  transform: scale(1.05);
+}
+
+
+
+/* game */
+#game {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+}
+
+#player {
+  position: absolute;
+  width: 90px;
+  height: 130px;
+  background-position: left center;
+  background-image: url("assets/hero/Attacking/Wraith_01_Attack_000.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  bottom: 50%;
+  left: 20px;
+  transform: translateY(50%);
+  animation: idle .7s infinite;
+
+}
+
+#enemy {
+  position: absolute;
+  width: 100px;
+  height: 130px;
+  background-position: left center;
+  background-image: url("assets/enemy/Idle/Wraith_03_Idle_000.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  bottom: 50%;
+  right: 20px;
+  transform: translateY(50%);
+  transform: scalex(-1);
+  animation: idleenemy .7s infinite;
+
+}
+
+#health-bar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  border: white 2px solid ;
+  border-radius: 5px; 
+  height: 20px;
+  background-color: #000;
+  overflow: hidden;
+}
+
+#health-bar .health {
+  width: 100%;
+  height: 100%;
+  background-color: green;
+}
+
+.bullet {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-image: url("assets/meteor1.png");
+  transform: rotate(90deg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 50%;
+}
+
+/* game over */
+.popup{
+  visibility: hidden;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 15, 15, .9);
+  position: absolute;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+.popup img {
+  margin-top: 100px;
+  background-image: url(images/gameover1.jpg);
+  background-position: 100%;
+  background-size: cover;
+  border-radius: 5px;
+  border: solid orange;
+  box-shadow: 0px 0px 40px orange;
+  height: 340px;
+  width: 430px;
+  z-index: 99;
+  animation: popu 2s alternate;
+}
+.popup button{
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-weight: 600;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 40px;
+}
+
+@keyframes  attack {
+0% {
+  background-image: url("assets/hero/Attacking/Wraith_01_Attack_000.png");
+}
+20% {
+  background-image: url("assets/hero/Attacking/Wraith_01_Attack_002.png");
+}
+40% {
+  background-image: url("assets/hero/Attacking/Wraith_01_Attack_004.png");
+}
+60% {
+  background-image: url("assets/hero/Attacking/Wraith_01_Attack_006.png");
+}
+80% {
+  background-image: url("assets/hero/Attacking/Wraith_01_Attack_008.png");
+}
+100% {
+  background-image: url("assets/hero/Attacking/Wraith_01_Attack_010.png");
+}
+}
+
+@keyframes idle{
+  0% {
+    background-image: url("assets/hero/Idle/Wraith_01_Idle_000.png");
+  }
+  20% {
+    background-image: url("assets/hero/Idle/Wraith_01_Idle_002.png");
+  }
+  40% {
+    background-image: url("assets/hero/Idle/Wraith_01_Idle_004.png");
+  }
+  60% {
+    background-image: url("assets/hero/Idle/Wraith_01_Idle_006.png");
+  }
+  80% {
+    background-image: url("assets/hero/Idle/Wraith_01_Idle_008.png");
+  }
+  100% {
+    background-image: url("assets/hero/Idle/Wraith_01_Idle_010.png");
+  }
+  }
+
+  @keyframes died{
+    0% {
+      background-image: url("assets/hero/Idle/Wraith_01_Idle_000.png");
+    }
+    100% {
+      background-image: url("assets/hero/Dying/Wraith_01_Dying_000.png");
+    }
+    }
+  
+    
+@keyframes  attackenemy {
+  0% {
+    background-image: url("assets/enemy/Attacking/Wraith_03_Attack_000.png");
+  }
+  20% {
+    background-image: url("assets/enemy/Attacking/Wraith_03_Attack_002.png");
+  }
+  40% {
+    background-image: url("assets/enemy/Attacking/Wraith_03_Attack_004.png");
+  }
+  60% {
+    background-image: url("assets/enemy/Attacking/Wraith_03_Attack_006.png");
+  }
+  80% {
+    background-image: url("assets/enemy/Attacking/Wraith_03_Attack_008.png");
+  }
+  100% {
+    background-image: url("assets/enemy/Attacking/Wraith_03_Attack_010.png");
+  }
+  }
+  
+  @keyframes idleenemy{
+    0% {
+      background-image: url("assets/enemy/Idle/Wraith_03_Idle_000.png");
+    }
+    20% {
+      background-image: url("assets/enemy/Idle/Wraith_03_Idle_002.png");
+    }
+    40% {
+      background-image: url("assets/enemy/Idle/Wraith_03_Idle_004.png");
+    }
+    60% {
+      background-image: url("assets/enemy/Idle/Wraith_03_Idle_006.png");
+    }
+    80% {
+      background-image: url("assets/enemy/Idle/Wraith_03_Idle_008.png");
+    }
+    100% {
+      background-image: url("assets/enemy/Idle/Wraith_03_Idle_010.png");
+    }
+    }
+  
+    @keyframes diedenemy{
+      0% {
+        background-image: url("assets/enemy/Idle/Wraith_03_Idle_000.png");
+      }
+      100% {
+        background-image: url("assets/enemy/Dying/Wraith_01_Dying_000.png");
+      }
+      }
+
+      @keyframes muncul {
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+       
+  
