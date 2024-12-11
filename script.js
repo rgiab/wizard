@@ -37,7 +37,6 @@ let enemyBullets = [];
 let gameInterval, enemyShootInterval;
 
 // Start Game
-// const startmusic = document.getElementById("backgroundMusic");
 function startGame() {
 
 
