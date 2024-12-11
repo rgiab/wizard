@@ -14,12 +14,22 @@
 <body>
   <video muted autoplay loop src="assets/bg.mp4"></video>
 
+  <!-- music -->
+  <audio id="background-music" autoplay loop>
+    <source src="sound/music.wav" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+
+<!-- <audio id="backgroundMusic" src="sound/game-start.mp3" loop></audio> -->
+
+
+
   <div id="menu">
-    <img src="assets/wizard.png" alt="">
+    <img src="assets/tittle.png" alt="">
     <div class="menu-buttons">
-      <button id="startGameButton" class="menu-btn play">Single Game</button>
-      <button class="menu-btn campaign">Campaign</button>
-      <button class="menu-btn multiplayer">Multiplayer</button>
+      <div id="startGameButton" class="menu-btn play"> </div>
+      <div class="menu-btn about"></div>
+      <div class="menu-btn score"></div>
     </div>
   </div>
 
@@ -31,10 +41,17 @@
   </div>
 
   <div id="gameover" class="popup">
-    <a href="index.html"><button id="restart">X</button></a>
-    <img src="assets/gameover1.jpg" alt="">
+    <div class="popimg" id="popimg">
+    <a href="index.html">Retry</a>
+    </div>
   </div>
 
+  <div class="control">
+    <div id="up-btn" class="control-btn">up</div>
+    <div id="down-btn" class="control-btn">down</div>
+    <div id="attack-btn" class="control-btn">space</div>
+  </div>
+    
   <script src="script.js"></script>
 </body>
 </html>

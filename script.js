@@ -1,11 +1,26 @@
 const menu = document.getElementById("menu");
 const game = document.getElementById("game");
 const startGameButton = document.getElementById("startGameButton");
+const buttongame = document.querySelector(".control");
 
 const player = document.getElementById("player");
 const enemy = document.getElementById("enemy");
 
+let playermovment = false;
+
 let nyerang = false;
+
+// music
+window.addEventListener('load', () => {
+    const audio = document.getElementById('background-music');
+    audio.volume = 0.5;
+    // Coba mulai musik
+    audio.play().catch((error) => {
+        console.log('Autoplay dicegah oleh browser. Menunggu interaksi pengguna...');
+    });
+});
+
+
 
 // Membuat elemen bar darah musuh
 const healthBar = document.createElement("div");
@@ -22,11 +37,16 @@ let enemyBullets = [];
 let gameInterval, enemyShootInterval;
 
 // Start Game
+// const startmusic = document.getElementById("backgroundMusic");
 function startGame() {
+
+
+    playermovment = true;
     healthBar.appendChild(health);
     document.body.appendChild(healthBar);
     menu.style.display = "none";
     game.style.display = "block";
+    buttongame.style.display = "block";
 
     // Reset positions
     playerPosition = window.innerHeight / 2 - 25;
@@ -48,18 +68,22 @@ function startGame() {
 
 // Reset Game
 const lose = document.getElementById("gameover");
-function gameOver(){
+const popimg = document.getElementById("popimg");
+function gameOver(image){
   clearInterval(enemyShootInterval);
   cancelAnimationFrame(gameInterval);
+  popimg.style.backgroundImage = image;
   lose.style.animation = "muncul 2s"
   lose.style.visibility = "visible"
+  playermovment = false;
 }
 // Player Movement
-document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowDown" && playerPosition > 0) playerPosition -= 20;
-    if (e.key === "ArrowUp" && playerPosition < window.innerHeight - 50) playerPosition += 20;
+function movehero(e) {
+    if (!playermovment) return; 
+    if ((e.key === 'ArrowDown' || e.target.id === "down-btn") && playerPosition > 0) playerPosition -= 20;
+    if ((e.key === 'ArrowUp' || e.target.id === "up-btn") && playerPosition < window.innerHeight - 50) playerPosition += 20;
 
-    if (e.key === " ") {
+    if (e.key === " " || e.target.id === "attack-btn") {
         if (!nyerang) {
             nyerang = true;
             player.style.animation = 'none';
@@ -88,7 +112,7 @@ document.addEventListener("keydown", (e) => {
     }, 300);
 
     player.style.bottom = `${playerPosition}px`;
-});
+};
 let stopAnimationTimeout;
 
 // Enemy Shooting
@@ -126,7 +150,7 @@ function gameLoop() {
             health.style.width = `${enemyHP}%`;
 
             if (enemyHP <= 0) {
-                gameOver()
+                gameOver('url("assets/winner.png")')
                 resetGame("You Win! Enemy Defeated!");
                 return;
             }
@@ -147,19 +171,21 @@ function gameLoop() {
         } else {
             bullet.style.right = `${right + 10}px`;
         }
-
+    
         const bulletRect = bullet.getBoundingClientRect();
         const playerRect = player.getBoundingClientRect();
         if (
             bulletRect.left <= playerRect.right &&
-            bulletRect.top < playerRect.bottom &&
-            bulletRect.bottom > playerRect.top
+            bulletRect.right >= playerRect.left && // Tambahkan cek untuk sisi kiri peluru
+            bulletRect.top <= playerRect.bottom && // Periksa apakah peluru berada di dalam area vertikal pemain
+            bulletRect.bottom >= playerRect.top
         ) {
-          gameOver();
-          resetGame("You Win! Enemy Defeated!");
-          return;
+            gameOver('url("assets/loser.png")');
+            resetGame("Game Over! You Lose!");
+            return;
         }
     });
+    
 
     // Enemy random movement
     if (Math.random() < 0.05) {
@@ -181,3 +207,7 @@ function updateEnemyShootSpeed() {
 
 // Event Listener for Start Button
 startGameButton.addEventListener("click", startGame);
+window.addEventListener("keydown", movehero);
+document.getElementById("down-btn").addEventListener("click", movehero);
+document.getElementById("up-btn").addEventListener("click", movehero);
+document.getElementById("attack-btn").addEventListener("click", movehero);
